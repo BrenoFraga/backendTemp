@@ -1,9 +1,7 @@
 package findr.projectfindr.controller;
 
-import findr.projectfindr.model.Contactor;
-import findr.projectfindr.model.LogLogin;
-import findr.projectfindr.model.ProjectModel;
-import findr.projectfindr.model.pkLogLogin;
+import findr.projectfindr.datastructure.hashtable.HashTable;
+import findr.projectfindr.model.*;
 import findr.projectfindr.repository.ContactorRepository;
 import findr.projectfindr.repository.LogLoginRepository;
 import findr.projectfindr.repository.ProjectRepository;
@@ -125,6 +123,34 @@ public class ContactorPersonController {
             return ResponseEntity.status(204).build();
         }
         return ResponseEntity.status(200).body(projetos);
+    }
+
+    @GetMapping("/busca/{nomeContactor}")
+    public ResponseEntity getFreelancerBusca(@PathVariable String nomeContactor){
+        if(bd.findAll().isEmpty()){
+            return ResponseEntity.status(204).body("Lista vazia");
+        }
+        List<Contactor> contactors = bd.findAll();
+        String primeiraLetraBusca = "";
+        HashTable hashTable = new HashTable(27);
+        Contactor contactorChange = new Contactor();
+
+        char[] arr = nomeContactor.toCharArray();
+        primeiraLetraBusca = String.valueOf(arr[0]);
+
+        for (Contactor c : contactors) {
+            if (c != null) {
+                hashTable.insere(primeiraLetraBusca.toUpperCase(), c.getName());
+            }
+        }
+        if(hashTable.busca(primeiraLetraBusca,nomeContactor)){
+            for (Contactor contactor : contactors) {
+                if (contactor.getName().equals(nomeContactor)) {
+                    contactorChange = contactor;
+                }
+            }
+        }
+        return ResponseEntity.status(200).body(contactorChange);
     }
 }
 
