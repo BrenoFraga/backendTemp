@@ -100,4 +100,12 @@ public class ProjectController {
         }
         return ResponseEntity.status(200).body(foto);
     }
+
+    @GetMapping("/required/languages")
+    public ResponseEntity getByProject() {
+        if (bd.findAll().isEmpty()){
+            return ResponseEntity.status(204).build();
+        }
+        return ResponseEntity.status(200).body(bd.tecs());
+    }
 }

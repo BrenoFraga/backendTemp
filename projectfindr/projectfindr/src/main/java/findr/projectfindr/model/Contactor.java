@@ -12,7 +12,6 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "contactor")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Contactor extends User {

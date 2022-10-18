@@ -37,6 +37,9 @@ public class LikeController {
     @Autowired
     private MatchRepositoy matchRepositoy;
 
+    @Autowired
+    private SpecialtyRepository specialtyRepository;
+
 
 
     @GetMapping("/freelancer")
@@ -72,10 +75,12 @@ public class LikeController {
             tags = {"API match"})
     public ResponseEntity cadastrarLikeFreelancer(@PathVariable long fkFreelancer,
                                                   @PathVariable long fkContactor,
+                                                  @PathVariable long fkSpecialty,
                                                   @PathVariable Boolean like){
         Contactor c = contactorRepository.findByIdContactor(fkContactor);
         UserFreelancer f = freelancerRepository.findByIdUserFreelancer  (fkFreelancer);
-        pkLikeFreelancer pkf = new pkLikeFreelancer(f,c);
+        SpecialtyModel p = specialtyRepository.findByIdSpecialty(fkSpecialty);
+        pkLikeFreelancer pkf = new pkLikeFreelancer(f,c,p);
         Date dataLike = new Date();
         LikeFreelancer lk = new LikeFreelancer(dataLike,like,pkf);
         List<LikeFreelancer> listLp = likeFreelancerRepository.findAll();

@@ -16,7 +16,12 @@ import javax.persistence.*;
 public class ProjectModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_project_contactor")
     private Long idProjectContactor;
+
+    @JsonIgnore
+    @Column(length = 50_000_000)
+    private byte[] image;
     private String nameProject;
     private String descriptionProject;
     private String requiredArea;
@@ -24,9 +29,6 @@ public class ProjectModel {
     private String levelKnowledge;
     private Integer quantityProfissionals;
 
-    @JsonIgnore
-    @Column(length = 50_000_000)
-    private byte[] image;
 
     @ManyToOne
     @JoinColumn(name = "fk_contactor")

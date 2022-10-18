@@ -71,4 +71,12 @@ public class SpecialtyController {
         }
         return ResponseEntity.status(204).build();
     }
+
+    @GetMapping("/required/specialty")
+    public ResponseEntity getSpecialtyqtd(){
+        if (bd.findAll().isEmpty()){
+            return ResponseEntity.status(204).body(bd.findAll());
+        }
+        return ResponseEntity.status(200).body(bd.tecs());
+    }
 }

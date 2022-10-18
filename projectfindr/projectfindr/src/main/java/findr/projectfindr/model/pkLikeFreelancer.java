@@ -14,6 +14,8 @@ import java.io.Serializable;
 
 @Embeddable
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class pkLikeFreelancer implements Serializable {
     @ManyToOne
     @JoinColumn(name = "fk_freelancer")
@@ -24,12 +26,10 @@ public class pkLikeFreelancer implements Serializable {
     @ManyToOne
     private Contactor fkContactor;
 
-    public pkLikeFreelancer(UserFreelancer fkFreelancer, Contactor fkContactor) {
-        this.fkFreelancer = fkFreelancer;
-        this.fkContactor = fkContactor;
-    }
 
-    public pkLikeFreelancer() {
-    }
+    @JoinColumn(name = "fk_specialty")
+    @ManyToOne
+    private SpecialtyModel fkSpecialty;
+
 
 }
