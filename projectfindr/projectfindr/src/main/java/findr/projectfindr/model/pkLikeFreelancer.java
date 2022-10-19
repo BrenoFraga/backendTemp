@@ -27,9 +27,5 @@ public class pkLikeFreelancer implements Serializable {
     private Contactor fkContactor;
 
 
-    @JoinColumn(name = "fk_specialty")
-    @ManyToOne
-    private SpecialtyModel fkSpecialty;
-
 
 }

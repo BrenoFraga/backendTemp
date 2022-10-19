@@ -109,12 +109,13 @@ public class FreelancerController {
             tags = {"API freelancer"})
     public ResponseEntity setLoginFreelancer(@RequestBody LoginRequest login) {
         UserFreelancer freelancerAtual = bd.findByEmailAndPassword(login.getEmail(), login.getPassword());
+        //Contactor contactor = new Contactor();
         if (freelancerAtual != null){
-            pkLogLogin pk = new pkLogLogin(freelancerAtual,null);
-            Date dataLog = new Date();
-            LogLogin log = new LogLogin(pk,dataLog);
-            logLoginRepositoy.save(log);
-            return ResponseEntity.status(200).build();
+            //pkLogLogin pk = new pkLogLogin(freelancerAtual,contactor);
+            //Date dataLog = new Date();
+            //LogLogin log = new LogLogin(pk,dataLog);
+           // logLoginRepositoy.save(log);
+            return ResponseEntity.status(200).body(freelancerAtual);
         }else{
             return ResponseEntity.status(404).build();
         }

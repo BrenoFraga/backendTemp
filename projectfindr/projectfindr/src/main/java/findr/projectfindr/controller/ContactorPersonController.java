@@ -101,11 +101,11 @@ public class ContactorPersonController {
     public ResponseEntity setLoginCompany(@RequestBody LoginRequest login) {
         Contactor contactorAtual = bd.showByEmailAndPass(login.getEmail(), login.getPassword());
         if (contactorAtual != null){
-            pkLogLogin pk = new pkLogLogin(null,contactorAtual);
-            Date dataLog = new Date();
-            LogLogin log = new LogLogin(pk,dataLog);
-            logLoginRepositoy.save(log);
-            return ResponseEntity.status(200).build();
+            //pkLogLogin pk = new pkLogLogin(null,contactorAtual);
+            //Date dataLog = new Date();
+            //LogLogin log = new LogLogin(pk,dataLog);
+            //logLoginRepositoy.save(log);
+            return ResponseEntity.status(200).body(contactorAtual);
         }else{
         return ResponseEntity.status(204).build();
         }
