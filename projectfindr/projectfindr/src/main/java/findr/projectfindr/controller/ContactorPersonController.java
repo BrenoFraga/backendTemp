@@ -111,6 +111,14 @@ public class ContactorPersonController {
         }
     }
 
+    @GetMapping("/perfil/email/{email}")
+    public ResponseEntity getPerfil(@PathVariable String email){
+        if(bd.findByEmail(email) != null){
+            return  ResponseEntity.status(200).body(bd.findByEmail(email));
+        }
+        return ResponseEntity.status(404).build();
+    }
+
     @GetMapping("/projects/{idContactor}")
     @Operation(summary = "Cadastra novos de projetos",description =
             "Irá cadastrar um novo projeto informado no banco de dados",

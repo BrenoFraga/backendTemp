@@ -43,4 +43,5 @@ public interface ContactorRepository extends JpaRepository<Contactor,Long> {
     @Query("select new findr.projectfindr.response.PerfilResponseContactorProject(c.name,c.image,c.city,c.state,c.email,p.nameProject) from Contactor c inner join ProjectModel p on c.idContactor = p.fkContactor.idContactor where c.idContactor = ?1")
     List<PerfilResponseContactorProject> showByIdPerfil(long id);
 
+    Contactor findByEmail(String email);
 }
